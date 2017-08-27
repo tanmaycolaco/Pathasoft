@@ -9,20 +9,26 @@ import org.springframework.stereotype.Service;
 
 import com.pathasoft.dao.fieldRepository;
 import com.pathasoft.model.Field;
+import com.pathasoft.service.FieldService;
 
 @Service
-public class FieldServiceImpl {
+public class FieldServiceImpl implements FieldService {
+	
 	@Autowired
 	private fieldRepository fieldRepository;
+
+	@Override
+	public List<Field> getFields(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Field> createFields(List<Field> fields) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
-	public List<Field> getallFields(){
-		List<Field> fields=new ArrayList<>();
-				((CrudRepository<com.pathasoft.model.Field, String>) fieldRepository).findAll().forEach(fields::add);
-		return fields;
-	}
-	public void addField(Field field)
-	{
-		((CrudRepository<Field, String>) fieldRepository).save(field);
-	}
+	
 
 }
