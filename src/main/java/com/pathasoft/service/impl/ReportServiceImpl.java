@@ -1,7 +1,6 @@
 package com.pathasoft.service.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -53,8 +52,7 @@ public class ReportServiceImpl implements ReportService {
 		logger.info("The report to be saved :"+ report.toString());
 		
 		try {
-			report.setCreatedDate(new Date());
-			report.setLastUpdated(new Date());
+			 report.setReportObjectForSave();
 			 report  = reportRepository.save(report);
 			 
 		} catch (Exception e) {

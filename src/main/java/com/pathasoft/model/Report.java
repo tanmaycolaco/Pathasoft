@@ -14,6 +14,10 @@ import javax.persistence.TemporalType;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import com.pathasoft.constants.ApplicationConstants;
+import com.pathasoft.util.DateUtil;
+import com.pathasoft.util.UniqueIdGenerationUtil;
+
 @Entity
 @Table(name="report")
 public class Report {
@@ -56,7 +60,7 @@ public class Report {
 	private double  balance;
 	
 	@Column(name = "report_time")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date reportTime;
 	
 	@Column(name = "report_note")
@@ -66,12 +70,12 @@ public class Report {
 	private int activeFlag;
 	
 	@Column(name = "created_date")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@CreatedDate
 	private Date createdDate;
 	
 	@Column(name = "last_Updated")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date lastUpdated;
 
@@ -211,32 +215,24 @@ public class Report {
 		this.lastUpdated = lastUpdated;
 	}
 
-	public Report(Long id, String reportId, long registeredUserid, double amount, String field, String fieldValues,
-			String modePayment, String chequeNumber, double taxes, double net, double paid, double balance,
-			Date reportTime, String reportNote, int activeFlag, Date createdDate, Date lastUpdated) {
-		super();
-		this.id = id;
-		this.reportId = reportId;
-		this.registeredUserid = registeredUserid;
-		this.amount = amount;
-		this.field = field;
-		this.fieldValues = fieldValues;
-		this.modePayment = modePayment;
-		this.chequeNumber = chequeNumber;
-		this.taxes = taxes;
-		this.net = net;
-		this.paid = paid;
-		this.balance = balance;
-		this.reportTime = reportTime;
-		this.reportNote = reportNote;
-		this.activeFlag = activeFlag;
-		this.createdDate = createdDate;
-		this.lastUpdated = lastUpdated;
+
+	
+	
+	@Override
+	public String toString() {
+		return "Report [id=" + id + ", reportId=" + reportId + ", registeredUserid=" + registeredUserid + ", amount="
+				+ amount + ", field=" + field + ", fieldValues=" + fieldValues + ", modePayment=" + modePayment
+				+ ", chequeNumber=" + chequeNumber + ", taxes=" + taxes + ", net=" + net + ", paid=" + paid
+				+ ", balance=" + balance + ", reportTime=" + reportTime + ", reportNote=" + reportNote + ", activeFlag="
+				+ activeFlag + ", createdDate=" + createdDate + ", lastUpdated=" + lastUpdated + "]";
 	}
 
-	public Report() {
-		super();
-		// TODO Auto-generated constructor stub
+	public void setReportObjectForSave()
+	{
+		createdDate = DateUtil.getCurrentTimeStamp();
+		lastUpdated = DateUtil.getCurrentTimeStamp();
+		reportTime = DateUtil.getCurrentTimeStamp();
+		reportId =   UniqueIdGenerationUtil.getUniqueId(ApplicationConstants.REPORT_PREFIX);
 	}
 
 
