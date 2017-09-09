@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
-import com.pathasoft.dao.fieldRepository;
+import com.pathasoft.dao.FieldRepository;
 import com.pathasoft.model.Field;
 import com.pathasoft.service.FieldService;
 
@@ -15,7 +15,7 @@ import com.pathasoft.service.FieldService;
 public class FieldServiceImpl implements FieldService {
 	
 	@Autowired
-	private fieldRepository fieldRepository;
+	private FieldRepository fieldRepository;
 
 	@Override
 	public List<Field> getFields(Long id) {

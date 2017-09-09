@@ -14,12 +14,6 @@ import com.pathasoft.service.FieldService;
 @RestController()
 public class FieldController {
 
-	@Autowired
-	private FieldService fieldServies;
-	
-	
-	
-
-	
+		
 	
 }
