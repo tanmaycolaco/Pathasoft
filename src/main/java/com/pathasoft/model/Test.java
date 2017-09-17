@@ -1,6 +1,7 @@
 package com.pathasoft.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,8 +36,8 @@ public class Test {
 	private String amount;
 	
 	
-	/*@Column(name = "active_Flag")
-	private int activeFlag;
+	@Column(name = "active_Flag")
+	private Boolean activeFlag;
 
 	@Column(name = "created_date")
 	@Temporal(TemporalType.DATE)
@@ -45,7 +47,8 @@ public class Test {
 	@Column(name = "last_Updated")
 	@Temporal(TemporalType.DATE)
 	@LastModifiedDate
-	private Date lastUpdated;*/
+	private Date lastUpdated;
+	
 
 	
 	/**
@@ -117,6 +120,61 @@ public class Test {
 	public void setAmount(String amount) {
 		this.amount = amount;
 	}
+
+	
+
+	/**
+	 * @return the activeFlag
+	 */
+	public Boolean getActiveFlag() {
+		return activeFlag;
+	}
+
+
+
+	/**
+	 * @param activeFlag the activeFlag to set
+	 */
+	public void setActiveFlag(Boolean activeFlag) {
+		this.activeFlag = activeFlag;
+	}
+
+
+
+	/**
+	 * @return the createdDate
+	 */
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+
+
+	/**
+	 * @param createdDate the createdDate to set
+	 */
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+
+
+	/**
+	 * @return the lastUpdated
+	 */
+	public Date getLastUpdated() {
+		return lastUpdated;
+	}
+
+
+
+	/**
+	 * @param lastUpdated the lastUpdated to set
+	 */
+	public void setLastUpdated(Date lastUpdated) {
+		this.lastUpdated = lastUpdated;
+	}
+
 
 
 

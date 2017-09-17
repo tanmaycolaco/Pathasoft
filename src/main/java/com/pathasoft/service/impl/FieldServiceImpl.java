@@ -14,6 +14,7 @@ import com.pathasoft.service.FieldService;
 @Service
 public class FieldServiceImpl implements FieldService {
 	
+	
 	@Autowired
 	private FieldRepository fieldRepository;
 
@@ -28,6 +29,13 @@ public class FieldServiceImpl implements FieldService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Field> getFieldByTest(String testName) {
+		
+		return fieldRepository.getFieldsByTest(testName);
+	}
+	
 	
 	
 

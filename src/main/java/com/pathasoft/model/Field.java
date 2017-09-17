@@ -16,48 +16,48 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 
 @Entity
-@Table(name="field")
+@Table(name="fields")
 public class Field {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name = "field_Name")
+	@Column(name = "fieldname")
 	private String fieldName;
 	
-	@Column(name = "male_Max")
+	@Column(name = "malemax")
 	private String maleMax;
 	
-	@Column(name = "male_Min")
+	@Column(name = "malemin")
 	private String maleMin;
 	
-	@Column(name = "female_Max")
+	@Column(name = "femalemax")
 	private String femaleMax;
 	
-	@Column(name = "female_Min")
+	@Column(name = "femalemin")
 	private String femaleMin;
 	
-	@Column(name = "child_Max")
+	@Column(name = "childmax")
 	private String childMax;
 	
-	@Column(name = "child_Min")
+	@Column(name = "childmin")
 	private String childMin;
 	
-	@Column(name = "field_Unit")
+	@Column(name = "fieldunit")
 	private String fieldUnit;
 	
-	@Column(name = "field_Method")
+	@Column(name = "fieldmethod")
 	private String fieldMethod;
 	
-	@Column(name = "field_Default")
+	@Column(name = "fielddefault")
 	private String fieldDefault;
 	
-	@Column(name = "field_Summary")
+	@Column(name = "fieldsummary")
 	private String fieldSummary;
 	
-	@Column(name = "active_Flag")
-	private int activeFlag;
+	@Column(name = "active_flag")
+	private Boolean activeFlag;
 
 	@Column(name = "created_date")
 	@Temporal(TemporalType.TIME)
@@ -240,20 +240,16 @@ public class Field {
 	/**
 	 * @return the activeFlag
 	 */
-	public int getActiveFlag() {
+	public Boolean getActiveFlag() {
 		return activeFlag;
 	}
 
-	/**
-	 * @param activeFlag the activeFlag to set
-	 */
-	public void setActiveFlag(int activeFlag) {
+	
+	public void setActiveFlag(Boolean activeFlag) {
 		this.activeFlag = activeFlag;
 	}
 
-	/**
-	 * @return the createdDate
-	 */
+	
 	public Date getCreatedDate() {
 		return createdDate;
 	}

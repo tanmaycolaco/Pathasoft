@@ -23,9 +23,7 @@ public class TestServiceImpl implements TestService {
 	@Override
 	public List<Test> getAllTest(Long id) {
 		
-		logger.info("The test data is :" + testRepository.findAll());
-		
-		return testRepository.getAllTest();
+		return testRepository.findAll();
 	}
 	
 	
