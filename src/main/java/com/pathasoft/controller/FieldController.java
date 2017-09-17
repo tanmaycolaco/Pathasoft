@@ -24,5 +24,11 @@ public class FieldController {
 		{
 			return fieldService.getFieldByTest(testName);
 		}
+	 
+	 @RequestMapping(value = "/getField/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+		public Field getReports(@PathVariable Long id)
+		{
+			return fieldService.getFieldById(id);
+		}
 	
 }

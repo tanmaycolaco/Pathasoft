@@ -1,10 +1,8 @@
 package com.pathasoft.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import com.pathasoft.dao.FieldRepository;
@@ -19,7 +17,7 @@ public class FieldServiceImpl implements FieldService {
 	private FieldRepository fieldRepository;
 
 	@Override
-	public List<Field> getFields(Long id) {
+	public List<Field> getFields() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -34,6 +32,12 @@ public class FieldServiceImpl implements FieldService {
 	public List<Field> getFieldByTest(String testName) {
 		
 		return fieldRepository.getFieldsByTest(testName);
+	}
+
+	@Override
+	public Field getFieldById(Long id) {
+		
+		return fieldRepository.getOne(id);
 	}
 	
 	
