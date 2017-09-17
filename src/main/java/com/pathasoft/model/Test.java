@@ -17,23 +17,24 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 
 @Entity
-@Table(name="test")
+@Table(name="tests")
 public class Test {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Id")
 	private long Id;
 	
-	@Column(name = "test_name")
+	@Column(name = "testname")
 	private String testName;
 	
-	@Column(name = "field_name")
+	@Column(name = "fieldname")
 	private String fieldName;
 	
 	@Column(name = "amount")
 	private String amount;
 	
-	@Column(name = "active_Flag")
+	
+	/*@Column(name = "active_Flag")
 	private int activeFlag;
 
 	@Column(name = "created_date")
@@ -44,79 +45,87 @@ public class Test {
 	@Column(name = "last_Updated")
 	@Temporal(TemporalType.DATE)
 	@LastModifiedDate
-	private Date lastUpdated;
+	private Date lastUpdated;*/
 
+	
+	/**
+	 * @return the id
+	 */
 	public long getId() {
 		return Id;
 	}
 
+
+
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(long id) {
 		Id = id;
 	}
 
+
+
+	/**
+	 * @return the testName
+	 */
 	public String getTestName() {
 		return testName;
 	}
 
+
+
+	/**
+	 * @param testName the testName to set
+	 */
 	public void setTestName(String testName) {
 		this.testName = testName;
 	}
 
+
+
+	/**
+	 * @return the fieldName
+	 */
 	public String getFieldName() {
 		return fieldName;
 	}
 
+
+
+	/**
+	 * @param fieldName the fieldName to set
+	 */
 	public void setFieldName(String fieldName) {
 		this.fieldName = fieldName;
 	}
 
+
+
+	/**
+	 * @return the amount
+	 */
 	public String getAmount() {
 		return amount;
 	}
 
+
+
+	/**
+	 * @param amount the amount to set
+	 */
 	public void setAmount(String amount) {
 		this.amount = amount;
 	}
 
-	public int getActiveFlag() {
-		return activeFlag;
-	}
 
-	public void setActiveFlag(int activeFlag) {
-		this.activeFlag = activeFlag;
-	}
 
-	public Date getCreatedDate() {
-		return createdDate;
+	@Override
+	public String toString() {
+		return "Test [Id=" + Id + ", testName=" + testName + ", fieldName=" + fieldName + ", amount=" + amount + "]";
 	}
+	
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public Date getLastUpdated() {
-		return lastUpdated;
-	}
-
-	public void setLastUpdated(Date lastUpdated) {
-		this.lastUpdated = lastUpdated;
-	}
-
-	public Test(long id, String testName, String fieldName, String amount, int activeFlag, Date createdDate,
-			Date lastUpdated) {
-		super();
-		Id = id;
-		this.testName = testName;
-		this.fieldName = fieldName;
-		this.amount = amount;
-		this.activeFlag = activeFlag;
-		this.createdDate = createdDate;
-		this.lastUpdated = lastUpdated;
-	}
-
-	public Test() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 }
