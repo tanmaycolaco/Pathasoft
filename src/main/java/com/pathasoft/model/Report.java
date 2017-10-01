@@ -35,12 +35,6 @@ public class Report {
 	@Column(name = "amount")
 	private double amount;
 	
-	@Column(name = "field")
-	private String field;
-	
-	@Column(name = "field_values")
-	private String fieldValues;
-	
 	@Column(name = "mode_payment")
 	private String modePayment;
 	
@@ -119,21 +113,6 @@ public class Report {
 		this.amount = amount;
 	}
 
-	public String getField() {
-		return field;
-	}
-
-	public void setField(String field) {
-		this.field = field;
-	}
-
-	public String getFieldValues() {
-		return fieldValues;
-	}
-
-	public void setFieldValues(String fieldValues) {
-		this.fieldValues = fieldValues;
-	}
 
 	public String getModePayment() {
 		return modePayment;
@@ -216,16 +195,9 @@ public class Report {
 	}
 
 
+
 	
 	
-	@Override
-	public String toString() {
-		return "Report [id=" + id + ", reportId=" + reportId + ", registeredUserid=" + registeredUserid + ", amount="
-				+ amount + ", field=" + field + ", fieldValues=" + fieldValues + ", modePayment=" + modePayment
-				+ ", chequeNumber=" + chequeNumber + ", taxes=" + taxes + ", net=" + net + ", paid=" + paid
-				+ ", balance=" + balance + ", reportTime=" + reportTime + ", reportNote=" + reportNote + ", activeFlag="
-				+ activeFlag + ", createdDate=" + createdDate + ", lastUpdated=" + lastUpdated + "]";
-	}
 
 	public void setReportObjectForSave()
 	{

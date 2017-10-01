@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pathasoft.dto.ReportDTO;
 import com.pathasoft.model.Report;
 import com.pathasoft.service.ReportService;
 
@@ -36,5 +37,11 @@ public class ReportController {
 		{
 			return reportService.saveReport(report);
 		}
+	 
+	 @RequestMapping(value = "/saveReportNew",method = RequestMethod.POST)
+	 public Boolean saveReport(@RequestBody ReportDTO reportDTO)
+	 {
+		 return reportService.saveReport(reportDTO);
+	 }
 
 }
