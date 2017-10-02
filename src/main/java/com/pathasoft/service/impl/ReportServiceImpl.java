@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.pathasoft.dao.ReportRepository;
 import com.pathasoft.dao.ReportTestFieldRepository;
+import com.pathasoft.dto.FieldActualValueDTO;
 import com.pathasoft.dto.ReportDTO;
 import com.pathasoft.dto.TestFieldDTO;
 import com.pathasoft.exception.ApplicationException;
@@ -88,9 +89,10 @@ public class ReportServiceImpl implements ReportService {
 				ReportTestField reportTestField = new ReportTestField();
 				reportTestField.setReport(reportDTO.getReport());
 				reportTestField.setTest(testField.getTest());
-				for(Field field:testField.getFields())
+				for(FieldActualValueDTO field:testField.getFields())
 				{
-					reportTestField.setField(field);
+					reportTestField.setField(field.getField());
+					reportTestField.setFieldValue(field.getActualValue());
 					reportTestFields.add(reportTestField);
 				}
 			}

@@ -9,7 +9,7 @@ public class TestFieldDTO {
 	
 	private Test test;
 	
-	private List<Field> fields;
+	private List<FieldActualValueDTO> fields;
 
 	/**
 	 * @return the test
@@ -28,16 +28,17 @@ public class TestFieldDTO {
 	/**
 	 * @return the fields
 	 */
-	public List<Field> getFields() {
+	public List<FieldActualValueDTO> getFields() {
 		return fields;
 	}
 
 	/**
 	 * @param fields the fields to set
 	 */
-	public void setFields(List<Field> fields) {
+	public void setFields(List<FieldActualValueDTO> fields) {
 		this.fields = fields;
 	}
+
 	
 	
 	
