@@ -46,12 +46,12 @@ private double commission;
 private int activeFlag;
 
 @Column(name = "created_date")
-@Temporal(TemporalType.DATE)
+@Temporal(TemporalType.TIMESTAMP)
 @CreatedDate
 private Date createdDate;
 
 @Column(name = "last_Updated")
-@Temporal(TemporalType.DATE)
+@Temporal(TemporalType.TIMESTAMP)
 @LastModifiedDate
 private Date lastUpdated;
 

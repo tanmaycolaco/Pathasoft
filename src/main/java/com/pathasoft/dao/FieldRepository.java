@@ -10,7 +10,7 @@ import com.pathasoft.model.Field;
 public interface FieldRepository extends JpaRepository<Field, Long>{
 	
 	
-	@Query("select f from Field f JOIN Test t ON t.fieldName = f.fieldName where t.testName = ?1")
-	List<Field> getFieldsByTest(String testName);
+	/*@Query("select f from Field f JOIN Test t ON t.fieldName = f.fieldName where t.testName = ?1")
+	List<Field> getFieldsByTest(String testName);*/
 
 }

@@ -2,13 +2,14 @@ package com.pathasoft.dto;
 
 import java.util.List;
 
+import com.pathasoft.model.Field;
 import com.pathasoft.model.Test;
 
-public class TestFieldDTO {
+public class TestDTO {
 	
-	private Test test;
+	Test test;
 	
-	private List<FieldActualValueDTO> fields;
+	List<Field> fields;
 
 	/**
 	 * @return the test
@@ -27,19 +28,16 @@ public class TestFieldDTO {
 	/**
 	 * @return the fields
 	 */
-	public List<FieldActualValueDTO> getFields() {
+	public List<Field> getFields() {
 		return fields;
 	}
 
 	/**
 	 * @param fields the fields to set
 	 */
-	public void setFields(List<FieldActualValueDTO> fields) {
+	public void setFields(List<Field> fields) {
 		this.fields = fields;
 	}
-
-	
-	
 	
 	
 

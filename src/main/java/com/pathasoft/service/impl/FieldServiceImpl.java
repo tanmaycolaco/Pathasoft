@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pathasoft.dao.FieldRepository;
+import com.pathasoft.dao.TestFieldRelRepository;
 import com.pathasoft.model.Field;
 import com.pathasoft.service.FieldService;
 
@@ -15,6 +16,9 @@ public class FieldServiceImpl implements FieldService {
 	
 	@Autowired
 	private FieldRepository fieldRepository;
+	
+	@Autowired
+	private TestFieldRelRepository testFieldRelRepository;
 
 	@Override
 	public List<Field> getFields() {
@@ -24,14 +28,17 @@ public class FieldServiceImpl implements FieldService {
 
 	@Override
 	public List<Field> createFields(List<Field> fields) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		fields = fieldRepository.saveAll(fields);
+		
+		return fields;
 	}
 
 	@Override
 	public List<Field> getFieldByTest(String testName) {
 		
-		return fieldRepository.getFieldsByTest(testName);
+		return testFieldRelRepository.getFieldsByTestName(testName);
+		
 	}
 
 	@Override

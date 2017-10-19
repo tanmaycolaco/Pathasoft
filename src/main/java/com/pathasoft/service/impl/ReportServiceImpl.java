@@ -109,4 +109,11 @@ public class ReportServiceImpl implements ReportService {
 		return true;
 	}
 
+	@Override
+	public List<ReportDTO> getReportByName(String reportName) {
+		
+		
+		return null;
+	}
+
 }

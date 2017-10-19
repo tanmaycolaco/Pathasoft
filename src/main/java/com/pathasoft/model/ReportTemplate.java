@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,11 +33,6 @@ public class ReportTemplate {
 	@Column(name = "serial_number")
 	private long  serialNumber;
 	
-	@Column(name = "tests")
-	private String tests;
-	
-	@Column(name = "type")
-	private String Type;
 	
 	@Column(name = "amount")
 	private double Amount;
@@ -59,14 +56,16 @@ public class ReportTemplate {
 	private int activeFlag;
 
 	@Column(name = "created_date")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@CreatedDate
 	private Date createdDate;
 	
 	@Column(name = "last_Updated")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date lastUpdated;
+	
+	
 
 	public long getId() {
 		return Id;
@@ -100,21 +99,7 @@ public class ReportTemplate {
 		this.serialNumber = serialNumber;
 	}
 
-	public String getTests() {
-		return tests;
-	}
 
-	public void setTests(String tests) {
-		this.tests = tests;
-	}
-
-	public String getType() {
-		return Type;
-	}
-
-	public void setType(String type) {
-		Type = type;
-	}
 
 	public double getAmount() {
 		return Amount;
@@ -187,32 +172,25 @@ public class ReportTemplate {
 	public void setLastUpdated(Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}
+	
+	
+	@PrePersist
+	public void onPrePersist() {
+		System.out.println("Pre Persist is Called");
+		createdDate = new Date();
+		lastUpdated = new Date();
 
-	public ReportTemplate(long id, String reportCode, String reportName, long serialNumber, String tests, String type,
-			double amount, String decided, String checkNormal, String checkMethod, String impression,
-			String interpretation, int activeFlag, Date createdDate, Date lastUpdated) {
-		super();
-		Id = id;
-		this.reportCode = reportCode;
-		this.reportName = reportName;
-		this.serialNumber = serialNumber;
-		this.tests = tests;
-		Type = type;
-		Amount = amount;
-		Decided = decided;
-		this.checkNormal = checkNormal;
-		this.checkMethod = checkMethod;
-		Impression = impression;
-		Interpretation = interpretation;
-		this.activeFlag = activeFlag;
-		this.createdDate = createdDate;
-		this.lastUpdated = lastUpdated;
 	}
 
-	public ReportTemplate() {
-		super();
-		// TODO Auto-generated constructor stub
+	@PreUpdate
+	public void onPreUpdate() {
+
+		System.out.println("Pre Update is Called");
+
+		lastUpdated = new Date();
+
 	}
+	
 
 	
 

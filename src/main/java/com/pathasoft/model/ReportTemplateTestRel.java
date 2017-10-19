@@ -17,25 +17,22 @@ import javax.persistence.TemporalType;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+
 @Entity
-@Table(name = "report_test_field")
-public class ReportTestField {
-	
+@Table(name="report_template_test_rel")
+public class ReportTemplateTestRel {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id ")
 	private Long id;
 	
-	@OneToOne
-	private Report report ;
 	
 	@OneToOne
 	private Test test;
 	
 	@OneToOne
-	private Field field;
-	
-	private String fieldValue;
+	private ReportTemplate reportTemplate;
 	
 	
 	@Column(name = "created_date")
@@ -43,13 +40,10 @@ public class ReportTestField {
 	@CreatedDate
 	private Date createdDate;
 	
-	
 	@Column(name = "last_Updated")
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date lastUpdated;
-	
-	
 
 	/**
 	 * @return the id
@@ -65,6 +59,36 @@ public class ReportTestField {
 		this.id = id;
 	}
 
+	/**
+	 * @return the test
+	 */
+	public Test getTest() {
+		return test;
+	}
+
+	/**
+	 * @param test the test to set
+	 */
+	public void setTest(Test test) {
+		this.test = test;
+	}
+
+	/**
+	 * @return the reportTemplate
+	 */
+	public ReportTemplate getReportTemplate() {
+		return reportTemplate;
+	}
+
+	/**
+	 * @param reportTemplate the reportTemplate to set
+	 */
+	public void setReportTemplate(ReportTemplate reportTemplate) {
+		this.reportTemplate = reportTemplate;
+	}
+	
+	
+	
 	/**
 	 * @return the createdDate
 	 */
@@ -93,63 +117,6 @@ public class ReportTestField {
 		this.lastUpdated = lastUpdated;
 	}
 
-	/**
-	 * @return the report
-	 */
-	public Report getReport() {
-		return report;
-	}
-
-	/**
-	 * @param report the report to set
-	 */
-	public void setReport(Report report) {
-		this.report = report;
-	}
-
-	/**
-	 * @return the test
-	 */
-	public Test getTest() {
-		return test;
-	}
-
-	/**
-	 * @param test the test to set
-	 */
-	public void setTest(Test test) {
-		this.test = test;
-	}
-
-	/**
-	 * @return the field
-	 */
-	public Field getField() {
-		return field;
-	}
-
-	/**
-	 * @param field the field to set
-	 */
-	public void setField(Field field) {
-		this.field = field;
-	}
-
-	/**
-	 * @return the fieldValue
-	 */
-	public String getFieldValue() {
-		return fieldValue;
-	}
-
-	/**
-	 * @param fieldValue the fieldValue to set
-	 */
-	public void setFieldValue(String fieldValue) {
-		this.fieldValue = fieldValue;
-	}
-	
-	
 	@PrePersist
 	public void onPrePersist() {
 		System.out.println("Pre Persist is Called");

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,8 +28,6 @@ public class Test {
 	@Column(name = "testname")
 	private String testName;
 	
-	@Column(name = "fieldname")
-	private String fieldName;
 	
 	@Column(name = "amount")
 	private String amount;
@@ -37,12 +37,12 @@ public class Test {
 	private Boolean activeFlag;
 
 	@Column(name = "created_date")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@CreatedDate
 	private Date createdDate;
 	
 	@Column(name = "last_Updated")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date lastUpdated;
 	
@@ -80,24 +80,6 @@ public class Test {
 	 */
 	public void setTestName(String testName) {
 		this.testName = testName;
-	}
-
-
-
-	/**
-	 * @return the fieldName
-	 */
-	public String getFieldName() {
-		return fieldName;
-	}
-
-
-
-	/**
-	 * @param fieldName the fieldName to set
-	 */
-	public void setFieldName(String fieldName) {
-		this.fieldName = fieldName;
 	}
 
 
@@ -173,15 +155,38 @@ public class Test {
 	}
 
 
+	
+	@PrePersist
+    public void onPrePersist() {
+       System.out.println("Pre Persist is Called");
+       createdDate = new Date();
+       lastUpdated = new Date();
+       
+    }
+	
+	  @PreUpdate
+	  public void onPreUpdate() {
+	        
+		  System.out.println("Pre Update is Called");
+		  
+		  lastUpdated = new Date();
+		  
+	    }
 
 
 
-
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "Test [Id=" + Id + ", testName=" + testName + ", fieldName=" + fieldName + ", amount=" + amount + "]";
+		return "Test [Id=" + Id + ", testName=" + testName + ", amount=" + amount + ", activeFlag=" + activeFlag
+				+ ", createdDate=" + createdDate + ", lastUpdated=" + lastUpdated + "]";
 	}
-	
+
+
+
+
 
 	
 	

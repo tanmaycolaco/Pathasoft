@@ -17,9 +17,10 @@ import javax.persistence.TemporalType;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+
 @Entity
-@Table(name = "report_test_field")
-public class ReportTestField {
+@Table(name = "test_field_rel")
+public class TestFieldRel {
 	
 	
 	@Id
@@ -27,16 +28,10 @@ public class ReportTestField {
 	private Long id;
 	
 	@OneToOne
-	private Report report ;
-	
-	@OneToOne
 	private Test test;
 	
 	@OneToOne
 	private Field field;
-	
-	private String fieldValue;
-	
 	
 	@Column(name = "created_date")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -48,8 +43,7 @@ public class ReportTestField {
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date lastUpdated;
-	
-	
+
 
 	/**
 	 * @return the id
@@ -58,6 +52,7 @@ public class ReportTestField {
 		return id;
 	}
 
+
 	/**
 	 * @param id the id to set
 	 */
@@ -65,47 +60,6 @@ public class ReportTestField {
 		this.id = id;
 	}
 
-	/**
-	 * @return the createdDate
-	 */
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	/**
-	 * @param createdDate the createdDate to set
-	 */
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	/**
-	 * @return the lastUpdated
-	 */
-	public Date getLastUpdated() {
-		return lastUpdated;
-	}
-
-	/**
-	 * @param lastUpdated the lastUpdated to set
-	 */
-	public void setLastUpdated(Date lastUpdated) {
-		this.lastUpdated = lastUpdated;
-	}
-
-	/**
-	 * @return the report
-	 */
-	public Report getReport() {
-		return report;
-	}
-
-	/**
-	 * @param report the report to set
-	 */
-	public void setReport(Report report) {
-		this.report = report;
-	}
 
 	/**
 	 * @return the test
@@ -114,12 +68,14 @@ public class ReportTestField {
 		return test;
 	}
 
+
 	/**
 	 * @param test the test to set
 	 */
 	public void setTest(Test test) {
 		this.test = test;
 	}
+
 
 	/**
 	 * @return the field
@@ -128,6 +84,7 @@ public class ReportTestField {
 		return field;
 	}
 
+
 	/**
 	 * @param field the field to set
 	 */
@@ -135,20 +92,37 @@ public class ReportTestField {
 		this.field = field;
 	}
 
-	/**
-	 * @return the fieldValue
-	 */
-	public String getFieldValue() {
-		return fieldValue;
-	}
 
 	/**
-	 * @param fieldValue the fieldValue to set
+	 * @return the createdDate
 	 */
-	public void setFieldValue(String fieldValue) {
-		this.fieldValue = fieldValue;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
-	
+
+
+	/**
+	 * @param createdDate the createdDate to set
+	 */
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+
+	/**
+	 * @return the lastUpdated
+	 */
+	public Date getLastUpdated() {
+		return lastUpdated;
+	}
+
+
+	/**
+	 * @param lastUpdated the lastUpdated to set
+	 */
+	public void setLastUpdated(Date lastUpdated) {
+		this.lastUpdated = lastUpdated;
+	}
 	
 	@PrePersist
 	public void onPrePersist() {
@@ -166,7 +140,6 @@ public class ReportTestField {
 		lastUpdated = new Date();
 
 	}
-	
 	
 	
 

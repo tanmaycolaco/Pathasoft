@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,7 +22,7 @@ import com.pathasoft.util.DateUtil;
 import com.pathasoft.util.UniqueIdGenerationUtil;
 
 @Entity
-@Table(name="report")
+@Table(name="reports")
 public class Report {
 	
 	@Id
@@ -53,12 +56,24 @@ public class Report {
 	@Column(name = "balance")
 	private double  balance;
 	
+	@Column(name = "patient_name")
+	private String patientName;
+	
+	@Column(name = "gender")
+	private String gender;
+	
+	@Column(name = "age")
+	private int age;
+	
 	@Column(name = "report_time")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date reportTime;
 	
 	@Column(name = "report_note")
 	private String reportNote;
+	
+	@OneToOne
+	private Doctor doctor;
 	
 	@Column(name = "active_Flag")
 	private int activeFlag;
@@ -72,6 +87,9 @@ public class Report {
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date lastUpdated;
+	
+	
+	
 
 	public int getActiveFlag() {
 		return activeFlag;
@@ -177,6 +195,64 @@ public class Report {
 	public void setReportNote(String reportNote) {
 		this.reportNote = reportNote;
 	}
+	
+	
+
+	/**
+	 * @return the patientName
+	 */
+	public String getPatientName() {
+		return patientName;
+	}
+
+	/**
+	 * @param patientName the patientName to set
+	 */
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
+	}
+
+	/**
+	 * @return the gender
+	 */
+	public String getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender the gender to set
+	 */
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	/**
+	 * @return the age
+	 */
+	public int getAge() {
+		return age;
+	}
+
+	/**
+	 * @param age the age to set
+	 */
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	/**
+	 * @return the doctor
+	 */
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	/**
+	 * @param doctor the doctor to set
+	 */
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
 
 	public Date getCreatedDate() {
 		return createdDate;
@@ -195,7 +271,22 @@ public class Report {
 	}
 
 
+	@PrePersist
+	public void onPrePersist() {
+		System.out.println("Pre Persist is Called");
+		createdDate = new Date();
+		lastUpdated = new Date();
 
+	}
+
+	@PreUpdate
+	public void onPreUpdate() {
+
+		System.out.println("Pre Update is Called");
+
+		lastUpdated = new Date();
+
+	}
 	
 	
 
