@@ -84,17 +84,13 @@ public class ReportServiceImpl implements ReportService {
 			reportDTO.getReport().setReportObjectForSave();
 			reportDTO.setReport(reportRepository.save(reportDTO.getReport()));
 			List<ReportTestField> reportTestFields = new ArrayList<>();
-			for(TestFieldDTO testField:reportDTO.getTestField())
+			for(FieldActualValueDTO fieldActualValueDTO:reportDTO.getFieldValue())
 			{
 				ReportTestField reportTestField = new ReportTestField();
 				reportTestField.setReport(reportDTO.getReport());
-				reportTestField.setTest(testField.getTest());
-				for(FieldActualValueDTO field:testField.getFields())
-				{
-					reportTestField.setField(field.getField());
-					reportTestField.setFieldValue(field.getActualValue());
-					reportTestFields.add(reportTestField);
-				}
+				reportTestField.setField(fieldActualValueDTO.getField());
+				reportTestField.setFieldValue(fieldActualValueDTO.getActualValue());
+				reportTestFields.add(reportTestField);
 			}
 			
 			reportTestFieldRepository.saveAll(reportTestFields);
@@ -110,10 +106,12 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
-	public List<ReportDTO> getReportByName(String reportName) {
+	public ReportDTO getReportByReportId(String reportId) {
+		
 		
 		
 		return null;
 	}
 
+	
 }

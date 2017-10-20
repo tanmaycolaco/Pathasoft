@@ -29,8 +29,6 @@ public class ReportTestField {
 	@OneToOne
 	private Report report ;
 	
-	@OneToOne
-	private Test test;
 	
 	@OneToOne
 	private Field field;
@@ -107,19 +105,6 @@ public class ReportTestField {
 		this.report = report;
 	}
 
-	/**
-	 * @return the test
-	 */
-	public Test getTest() {
-		return test;
-	}
-
-	/**
-	 * @param test the test to set
-	 */
-	public void setTest(Test test) {
-		this.test = test;
-	}
 
 	/**
 	 * @return the field

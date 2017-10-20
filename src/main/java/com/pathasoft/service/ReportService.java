@@ -13,6 +13,7 @@ public interface ReportService {
 	
 	Boolean saveReport(ReportDTO reportDTO);
 	
-	List<ReportDTO> getReportByName(String reportName);
+	ReportDTO getReportByReportId(String reportId);
+	
 
 }

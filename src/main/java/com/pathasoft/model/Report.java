@@ -32,6 +32,10 @@ public class Report {
 	@Column(name = "report_id")
 	private String reportId;
 	
+	
+	@OneToOne
+	private ReportTemplate reportTemplate;
+	
 	@Column(name = "registered_userid")
 	private Long registeredUserid;
 	
@@ -89,11 +93,20 @@ public class Report {
 	private Date lastUpdated;
 	
 	
-	
 
-	
+	/**
+	 * @return the reportTemplate
+	 */
+	public ReportTemplate getReportTemplate() {
+		return reportTemplate;
+	}
 
-	
+	/**
+	 * @param reportTemplate the reportTemplate to set
+	 */
+	public void setReportTemplate(ReportTemplate reportTemplate) {
+		this.reportTemplate = reportTemplate;
+	}
 
 	/**
 	 * @return the id

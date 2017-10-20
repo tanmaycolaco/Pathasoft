@@ -8,7 +8,7 @@ public class ReportDTO {
 	
 	private Report report;
 	
-	private List<TestFieldDTO> testField;
+	private List<FieldActualValueDTO> fieldValue;
 
 	/**
 	 * @return the report
@@ -25,19 +25,21 @@ public class ReportDTO {
 	}
 
 	/**
-	 * @return the testField
+	 * @return the fieldValue
 	 */
-	public List<TestFieldDTO> getTestField() {
-		return testField;
+	public List<FieldActualValueDTO> getFieldValue() {
+		return fieldValue;
 	}
 
 	/**
-	 * @param testField the testField to set
+	 * @param fieldValue the fieldValue to set
 	 */
-	public void setTestField(List<TestFieldDTO> testField) {
-		this.testField = testField;
+	public void setFieldValue(List<FieldActualValueDTO> fieldValue) {
+		this.fieldValue = fieldValue;
 	}
 
+
+	
 	
 	
 
