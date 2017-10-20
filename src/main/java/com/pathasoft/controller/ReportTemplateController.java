@@ -20,10 +20,17 @@ public class ReportTemplateController {
 	ReportTemplateService reportTemplateService;
 	
 	
-	@RequestMapping(value = "/getTestInReportTemplate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/getTestInReportTemplate/{reportTemplateName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	 public List<Test> getTestInReportTemplate(@PathVariable String reportTemplateName)
 	 {
 		return reportTemplateService.getReportTemplateByName(reportTemplateName);
+		 
+	 }
+	
+	@RequestMapping(value = "/getReportTemplateByTestName/{testName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	 public List<Test> getReportTemplateByTestName(@PathVariable String testName)
+	 {
+		return reportTemplateService.getReportTemplateByName(testName);
 		 
 	 }
 	
