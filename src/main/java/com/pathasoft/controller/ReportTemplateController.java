@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pathasoft.model.ReportTemplate;
 import com.pathasoft.model.Test;
 import com.pathasoft.service.ReportTemplateService;
 
@@ -28,9 +29,9 @@ public class ReportTemplateController {
 	 }
 	
 	@RequestMapping(value = "/getReportTemplateByTestName/{testName}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	 public List<Test> getReportTemplateByTestName(@PathVariable String testName)
+	 public List<ReportTemplate> getReportTemplateByTestName(@PathVariable String testName)
 	 {
-		return reportTemplateService.getReportTemplateByName(testName);
+		return reportTemplateService.getReportTemplateByTestName(testName);
 		 
 	 }
 	

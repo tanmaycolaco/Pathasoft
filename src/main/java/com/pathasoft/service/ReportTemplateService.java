@@ -11,7 +11,7 @@ public interface ReportTemplateService {
 	List<Test>  getReportTemplateByName(String name);
 	
 	
-	List<ReportTemplate> getRepoetTemplateByTestName(String testName);
+	List<ReportTemplate> getReportTemplateByTestName(String testName);
 	
 	
 

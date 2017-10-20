@@ -28,7 +28,7 @@ public class ReportTemplateServiceImpl implements ReportTemplateService {
 	}
 
 	@Override
-	public List<ReportTemplate> getRepoetTemplateByTestName(String testName) {
+	public List<ReportTemplate> getReportTemplateByTestName(String testName) {
 		
 		return reportTemplateTestRelRepository.getReportTemplateByTestName(testName);
 		
