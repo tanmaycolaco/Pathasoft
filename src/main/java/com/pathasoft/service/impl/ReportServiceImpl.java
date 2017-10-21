@@ -77,7 +77,7 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
-	public Boolean saveReport(ReportDTO reportDTO) {
+	public ReportDTO saveReport(ReportDTO reportDTO) {
 		logger.info("The report to be saved :"+ reportDTO.toString());
 		try{
 			
@@ -102,7 +102,7 @@ public class ReportServiceImpl implements ReportService {
 			throw new ApplicationException(e.getMessage());
 		}
 		
-		return true;
+		return reportDTO;
 	}
 
 	@Override

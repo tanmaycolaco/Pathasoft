@@ -39,7 +39,7 @@ public class ReportController {
 		}
 	 
 	 @RequestMapping(value = "/saveReportNew",method = RequestMethod.POST)
-	 public Boolean saveReport(@RequestBody ReportDTO reportDTO)
+	 public ReportDTO saveReport(@RequestBody ReportDTO reportDTO)
 	 {
 		 return reportService.saveReport(reportDTO);
 	 }
