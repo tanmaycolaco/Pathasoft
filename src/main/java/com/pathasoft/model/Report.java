@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,7 +22,7 @@ import com.pathasoft.util.DateUtil;
 import com.pathasoft.util.UniqueIdGenerationUtil;
 
 @Entity
-@Table(name="report")
+@Table(name="reports")
 public class Report {
 	
 	@Id
@@ -29,17 +32,15 @@ public class Report {
 	@Column(name = "report_id")
 	private String reportId;
 	
+	
+	@OneToOne
+	private ReportTemplate reportTemplate;
+	
 	@Column(name = "registered_userid")
-	private long registeredUserid;
+	private Long registeredUserid;
 	
 	@Column(name = "amount")
-	private double amount;
-	
-	@Column(name = "field")
-	private String field;
-	
-	@Column(name = "field_values")
-	private String fieldValues;
+	private Double amount;
 	
 	@Column(name = "mode_payment")
 	private String modePayment;
@@ -48,16 +49,25 @@ public class Report {
 	private String chequeNumber;
 	
 	@Column(name = "taxes")
-	private double  taxes;
+	private Double  taxes;
 	
 	@Column(name = "net")
-	private double  net;
+	private Double  net;
 	
 	@Column(name = "paid")
-	private double  paid;
+	private Double  paid;
 	
 	@Column(name = "balance")
-	private double  balance;
+	private Double  balance;
+	
+	@Column(name = "patient_name")
+	private String patientName;
+	
+	@Column(name = "gender")
+	private String gender;
+	
+	@Column(name = "age")
+	private Integer age;
 	
 	@Column(name = "report_time")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -66,8 +76,11 @@ public class Report {
 	@Column(name = "report_note")
 	private String reportNote;
 	
+	@OneToOne
+	private Doctor doctor;
+	
 	@Column(name = "active_Flag")
-	private int activeFlag;
+	private Integer activeFlag;
 	
 	@Column(name = "created_date")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -78,154 +91,307 @@ public class Report {
 	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date lastUpdated;
+	
+	
 
-	public int getActiveFlag() {
-		return activeFlag;
+	/**
+	 * @return the reportTemplate
+	 */
+	public ReportTemplate getReportTemplate() {
+		return reportTemplate;
 	}
 
-	public void setActiveFlag(int activeFlag) {
-		this.activeFlag = activeFlag;
+	/**
+	 * @param reportTemplate the reportTemplate to set
+	 */
+	public void setReportTemplate(ReportTemplate reportTemplate) {
+		this.reportTemplate = reportTemplate;
 	}
 
+	/**
+	 * @return the id
+	 */
 	public Long getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return the reportId
+	 */
 	public String getReportId() {
 		return reportId;
 	}
 
+	/**
+	 * @param reportId the reportId to set
+	 */
 	public void setReportId(String reportId) {
 		this.reportId = reportId;
 	}
 
-	public long getRegisteredUserid() {
+	/**
+	 * @return the registeredUserid
+	 */
+	public Long getRegisteredUserid() {
 		return registeredUserid;
 	}
 
-	public void setRegisteredUserid(long registeredUserid) {
+	/**
+	 * @param registeredUserid the registeredUserid to set
+	 */
+	public void setRegisteredUserid(Long registeredUserid) {
 		this.registeredUserid = registeredUserid;
 	}
 
-	public double getAmount() {
+	/**
+	 * @return the amount
+	 */
+	public Double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(double amount) {
+	/**
+	 * @param amount the amount to set
+	 */
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 
-	public String getField() {
-		return field;
-	}
-
-	public void setField(String field) {
-		this.field = field;
-	}
-
-	public String getFieldValues() {
-		return fieldValues;
-	}
-
-	public void setFieldValues(String fieldValues) {
-		this.fieldValues = fieldValues;
-	}
-
+	/**
+	 * @return the modePayment
+	 */
 	public String getModePayment() {
 		return modePayment;
 	}
 
+	/**
+	 * @param modePayment the modePayment to set
+	 */
 	public void setModePayment(String modePayment) {
 		this.modePayment = modePayment;
 	}
 
+	/**
+	 * @return the chequeNumber
+	 */
 	public String getChequeNumber() {
 		return chequeNumber;
 	}
 
+	/**
+	 * @param chequeNumber the chequeNumber to set
+	 */
 	public void setChequeNumber(String chequeNumber) {
 		this.chequeNumber = chequeNumber;
 	}
 
-	public double getTaxes() {
+	/**
+	 * @return the taxes
+	 */
+	public Double getTaxes() {
 		return taxes;
 	}
 
-	public void setTaxes(double taxes) {
+	/**
+	 * @param taxes the taxes to set
+	 */
+	public void setTaxes(Double taxes) {
 		this.taxes = taxes;
 	}
 
-	public double getNet() {
+	/**
+	 * @return the net
+	 */
+	public Double getNet() {
 		return net;
 	}
 
-	public void setNet(double net) {
+	/**
+	 * @param net the net to set
+	 */
+	public void setNet(Double net) {
 		this.net = net;
 	}
 
-	public double getPaid() {
+	/**
+	 * @return the paid
+	 */
+	public Double getPaid() {
 		return paid;
 	}
 
-	public void setPaid(double paid) {
+	/**
+	 * @param paid the paid to set
+	 */
+	public void setPaid(Double paid) {
 		this.paid = paid;
 	}
 
-	public double getBalance() {
+	/**
+	 * @return the balance
+	 */
+	public Double getBalance() {
 		return balance;
 	}
 
-	public void setBalance(double balance) {
+	/**
+	 * @param balance the balance to set
+	 */
+	public void setBalance(Double balance) {
 		this.balance = balance;
 	}
 
+	/**
+	 * @return the patientName
+	 */
+	public String getPatientName() {
+		return patientName;
+	}
+
+	/**
+	 * @param patientName the patientName to set
+	 */
+	public void setPatientName(String patientName) {
+		this.patientName = patientName;
+	}
+
+	/**
+	 * @return the gender
+	 */
+	public String getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender the gender to set
+	 */
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	/**
+	 * @return the age
+	 */
+	public Integer getAge() {
+		return age;
+	}
+
+	/**
+	 * @param age the age to set
+	 */
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	/**
+	 * @return the reportTime
+	 */
 	public Date getReportTime() {
 		return reportTime;
 	}
 
+	/**
+	 * @param reportTime the reportTime to set
+	 */
 	public void setReportTime(Date reportTime) {
 		this.reportTime = reportTime;
 	}
 
+	/**
+	 * @return the reportNote
+	 */
 	public String getReportNote() {
 		return reportNote;
 	}
 
+	/**
+	 * @param reportNote the reportNote to set
+	 */
 	public void setReportNote(String reportNote) {
 		this.reportNote = reportNote;
 	}
 
+	/**
+	 * @return the doctor
+	 */
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	/**
+	 * @param doctor the doctor to set
+	 */
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+	/**
+	 * @return the activeFlag
+	 */
+	public Integer getActiveFlag() {
+		return activeFlag;
+	}
+
+	/**
+	 * @param activeFlag the activeFlag to set
+	 */
+	public void setActiveFlag(Integer activeFlag) {
+		this.activeFlag = activeFlag;
+	}
+
+	/**
+	 * @return the createdDate
+	 */
 	public Date getCreatedDate() {
 		return createdDate;
 	}
 
+	/**
+	 * @param createdDate the createdDate to set
+	 */
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
+	/**
+	 * @return the lastUpdated
+	 */
 	public Date getLastUpdated() {
 		return lastUpdated;
 	}
 
+	/**
+	 * @param lastUpdated the lastUpdated to set
+	 */
 	public void setLastUpdated(Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}
 
+	@PrePersist
+	public void onPrePersist() {
+		System.out.println("Pre Persist is Called");
+		createdDate = new Date();
+		lastUpdated = new Date();
 
-	
-	
-	@Override
-	public String toString() {
-		return "Report [id=" + id + ", reportId=" + reportId + ", registeredUserid=" + registeredUserid + ", amount="
-				+ amount + ", field=" + field + ", fieldValues=" + fieldValues + ", modePayment=" + modePayment
-				+ ", chequeNumber=" + chequeNumber + ", taxes=" + taxes + ", net=" + net + ", paid=" + paid
-				+ ", balance=" + balance + ", reportTime=" + reportTime + ", reportNote=" + reportNote + ", activeFlag="
-				+ activeFlag + ", createdDate=" + createdDate + ", lastUpdated=" + lastUpdated + "]";
 	}
+
+	@PreUpdate
+	public void onPreUpdate() {
+
+		System.out.println("Pre Update is Called");
+
+		lastUpdated = new Date();
+
+	}
+	
+	
 
 	public void setReportObjectForSave()
 	{

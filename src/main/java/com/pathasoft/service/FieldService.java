@@ -6,8 +6,13 @@ import com.pathasoft.model.Field;
 
 public interface FieldService {
 	
-	public List<Field> getFields(Long id);
+	
+	public Field getFieldById(Long id);
+	
+	public List<Field> getFields();
 	
 	public List<Field> createFields(List<Field> fields);
+	
+	public List<Field>  getFieldByTest(String testName);
 
 }

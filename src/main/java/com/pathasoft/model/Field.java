@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,58 +16,57 @@ import javax.persistence.TemporalType;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-
 @Entity
-@Table(name="field")
+@Table(name = "fields")
 public class Field {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(name = "field_Name")
+
+	@Column(name = "fieldname")
 	private String fieldName;
-	
-	@Column(name = "male_Max")
+
+	@Column(name = "malemax")
 	private String maleMax;
-	
-	@Column(name = "male_Min")
+
+	@Column(name = "malemin")
 	private String maleMin;
-	
-	@Column(name = "female_Max")
+
+	@Column(name = "femalemax")
 	private String femaleMax;
-	
-	@Column(name = "female_Min")
+
+	@Column(name = "femalemin")
 	private String femaleMin;
-	
-	@Column(name = "child_Max")
+
+	@Column(name = "childmax")
 	private String childMax;
-	
-	@Column(name = "child_Min")
+
+	@Column(name = "childmin")
 	private String childMin;
-	
-	@Column(name = "field_Unit")
+
+	@Column(name = "fieldunit")
 	private String fieldUnit;
-	
-	@Column(name = "field_Method")
+
+	@Column(name = "fieldmethod")
 	private String fieldMethod;
-	
-	@Column(name = "field_Default")
+
+	@Column(name = "fielddefault")
 	private String fieldDefault;
-	
-	@Column(name = "field_Summary")
+
+	@Column(name = "fieldsummary")
 	private String fieldSummary;
-	
-	@Column(name = "active_Flag")
-	private int activeFlag;
+
+	@Column(name = "active_flag")
+	private Boolean activeFlag;
 
 	@Column(name = "created_date")
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.TIMESTAMP)
 	@CreatedDate
 	private Date createdDate;
-	
+
 	@Column(name = "last_Updated")
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.TIMESTAMP)
 	@LastModifiedDate
 	private Date lastUpdated;
 
@@ -77,7 +78,8 @@ public class Field {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -91,7 +93,8 @@ public class Field {
 	}
 
 	/**
-	 * @param fieldName the fieldName to set
+	 * @param fieldName
+	 *            the fieldName to set
 	 */
 	public void setFieldName(String fieldName) {
 		this.fieldName = fieldName;
@@ -105,7 +108,8 @@ public class Field {
 	}
 
 	/**
-	 * @param maleMax the maleMax to set
+	 * @param maleMax
+	 *            the maleMax to set
 	 */
 	public void setMaleMax(String maleMax) {
 		this.maleMax = maleMax;
@@ -119,7 +123,8 @@ public class Field {
 	}
 
 	/**
-	 * @param maleMin the maleMin to set
+	 * @param maleMin
+	 *            the maleMin to set
 	 */
 	public void setMaleMin(String maleMin) {
 		this.maleMin = maleMin;
@@ -133,7 +138,8 @@ public class Field {
 	}
 
 	/**
-	 * @param femaleMax the femaleMax to set
+	 * @param femaleMax
+	 *            the femaleMax to set
 	 */
 	public void setFemaleMax(String femaleMax) {
 		this.femaleMax = femaleMax;
@@ -147,7 +153,8 @@ public class Field {
 	}
 
 	/**
-	 * @param femaleMin the femaleMin to set
+	 * @param femaleMin
+	 *            the femaleMin to set
 	 */
 	public void setFemaleMin(String femaleMin) {
 		this.femaleMin = femaleMin;
@@ -161,7 +168,8 @@ public class Field {
 	}
 
 	/**
-	 * @param childMax the childMax to set
+	 * @param childMax
+	 *            the childMax to set
 	 */
 	public void setChildMax(String childMax) {
 		this.childMax = childMax;
@@ -175,7 +183,8 @@ public class Field {
 	}
 
 	/**
-	 * @param childMin the childMin to set
+	 * @param childMin
+	 *            the childMin to set
 	 */
 	public void setChildMin(String childMin) {
 		this.childMin = childMin;
@@ -189,7 +198,8 @@ public class Field {
 	}
 
 	/**
-	 * @param fieldUnit the fieldUnit to set
+	 * @param fieldUnit
+	 *            the fieldUnit to set
 	 */
 	public void setFieldUnit(String fieldUnit) {
 		this.fieldUnit = fieldUnit;
@@ -203,7 +213,8 @@ public class Field {
 	}
 
 	/**
-	 * @param fieldMethod the fieldMethod to set
+	 * @param fieldMethod
+	 *            the fieldMethod to set
 	 */
 	public void setFieldMethod(String fieldMethod) {
 		this.fieldMethod = fieldMethod;
@@ -217,7 +228,8 @@ public class Field {
 	}
 
 	/**
-	 * @param fieldDefault the fieldDefault to set
+	 * @param fieldDefault
+	 *            the fieldDefault to set
 	 */
 	public void setFieldDefault(String fieldDefault) {
 		this.fieldDefault = fieldDefault;
@@ -231,7 +243,8 @@ public class Field {
 	}
 
 	/**
-	 * @param fieldSummary the fieldSummary to set
+	 * @param fieldSummary
+	 *            the fieldSummary to set
 	 */
 	public void setFieldSummary(String fieldSummary) {
 		this.fieldSummary = fieldSummary;
@@ -240,26 +253,21 @@ public class Field {
 	/**
 	 * @return the activeFlag
 	 */
-	public int getActiveFlag() {
+	public Boolean getActiveFlag() {
 		return activeFlag;
 	}
 
-	/**
-	 * @param activeFlag the activeFlag to set
-	 */
-	public void setActiveFlag(int activeFlag) {
+	public void setActiveFlag(Boolean activeFlag) {
 		this.activeFlag = activeFlag;
 	}
 
-	/**
-	 * @return the createdDate
-	 */
 	public Date getCreatedDate() {
 		return createdDate;
 	}
 
 	/**
-	 * @param createdDate the createdDate to set
+	 * @param createdDate
+	 *            the createdDate to set
 	 */
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
@@ -273,13 +281,28 @@ public class Field {
 	}
 
 	/**
-	 * @param lastUpdated the lastUpdated to set
+	 * @param lastUpdated
+	 *            the lastUpdated to set
 	 */
 	public void setLastUpdated(Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}
 
-	
-	
+	@PrePersist
+	public void onPrePersist() {
+		System.out.println("Pre Persist is Called");
+		createdDate = new Date();
+		lastUpdated = new Date();
+
+	}
+
+	@PreUpdate
+	public void onPreUpdate() {
+
+		System.out.println("Pre Update is Called");
+
+		lastUpdated = new Date();
+
+	}
 
 }

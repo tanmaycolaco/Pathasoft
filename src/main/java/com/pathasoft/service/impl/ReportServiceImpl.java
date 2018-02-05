@@ -9,8 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pathasoft.dao.ReportRepository;
+import com.pathasoft.dao.ReportTestFieldRepository;
+import com.pathasoft.dto.FieldActualValueDTO;
+import com.pathasoft.dto.ReportDTO;
+import com.pathasoft.dto.TestFieldDTO;
 import com.pathasoft.exception.ApplicationException;
+import com.pathasoft.model.Field;
 import com.pathasoft.model.Report;
+import com.pathasoft.model.ReportTestField;
 import com.pathasoft.service.ReportService;
 
 @Service
@@ -20,6 +26,9 @@ public class ReportServiceImpl implements ReportService {
 	
 	@Autowired
 	ReportRepository reportRepository;
+	
+	@Autowired
+	ReportTestFieldRepository reportTestFieldRepository ;
 
 	@Override
 	public List<Report> getReports(Long id) {
@@ -67,4 +76,42 @@ public class ReportServiceImpl implements ReportService {
 		
 	}
 
+	@Override
+	public ReportDTO saveReport(ReportDTO reportDTO) {
+		logger.info("The report to be saved :"+ reportDTO.toString());
+		try{
+			
+			reportDTO.getReport().setReportObjectForSave();
+			reportDTO.setReport(reportRepository.save(reportDTO.getReport()));
+			List<ReportTestField> reportTestFields = new ArrayList<>();
+			for(FieldActualValueDTO fieldActualValueDTO:reportDTO.getFieldValue())
+			{
+				ReportTestField reportTestField = new ReportTestField();
+				reportTestField.setReport(reportDTO.getReport());
+				reportTestField.setField(fieldActualValueDTO.getField());
+				reportTestField.setFieldValue(fieldActualValueDTO.getActualValue());
+				reportTestFields.add(reportTestField);
+			}
+			
+			reportTestFieldRepository.saveAll(reportTestFields);
+			
+		}
+		catch(Exception e)
+		{
+			logger.error(e.getMessage());
+			throw new ApplicationException(e.getMessage());
+		}
+		
+		return reportDTO;
+	}
+
+	@Override
+	public ReportDTO getReportByReportId(String reportId) {
+		
+		
+		
+		return null;
+	}
+
+	
 }
