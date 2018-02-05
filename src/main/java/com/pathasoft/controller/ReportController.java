@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pathasoft.dto.ReportDTO;
 import com.pathasoft.model.Report;
+import com.pathasoft.model.ReportTestField;
 import com.pathasoft.service.ReportService;
 
 @RestController
@@ -31,6 +32,11 @@ public class ReportController {
 		return reportService.getReports(id);
 	}
 	 
+	 @RequestMapping(value = "/getReportWithActualValue", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+		public List<ReportTestField> getReportWithActualValue(@RequestParam(required = false) String id)
+		{
+			return reportService.getReportWithActualValue(id);
+		}
 	 
 	 @RequestMapping(value = "/saveReport", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 		public Report saveReport(@RequestBody Report report)

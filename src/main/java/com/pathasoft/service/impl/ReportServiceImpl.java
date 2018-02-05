@@ -113,5 +113,12 @@ public class ReportServiceImpl implements ReportService {
 		return null;
 	}
 
+	@Override
+	public List<ReportTestField> getReportWithActualValue(String id) {
+		
+		 return reportTestFieldRepository.getReportDataByReportId(id);
+		
+	}
+
 	
 }

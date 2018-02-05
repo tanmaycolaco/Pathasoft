@@ -18,7 +18,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
 @Table(name="Template")
-public class Template {
+public class ReportTemplate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id ")
