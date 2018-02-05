@@ -15,8 +15,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 @Entity
-@Table(name="report_template")
-public class ReportTemplate {
+@Table(name="Template")
+public class Template {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id ")
@@ -188,7 +188,7 @@ public class ReportTemplate {
 		this.lastUpdated = lastUpdated;
 	}
 
-	public ReportTemplate(long id, String reportCode, String reportName, long serialNumber, String tests, String type,
+	public Template(long id, String reportCode, String reportName, long serialNumber, String tests, String type,
 			double amount, String decided, String checkNormal, String checkMethod, String impression,
 			String interpretation, int activeFlag, Date createdDate, Date lastUpdated) {
 		super();
@@ -209,7 +209,7 @@ public class ReportTemplate {
 		this.lastUpdated = lastUpdated;
 	}
 
-	public ReportTemplate() {
+	public Template() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
